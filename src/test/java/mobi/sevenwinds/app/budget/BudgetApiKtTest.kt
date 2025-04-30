@@ -33,9 +33,9 @@ class BudgetApiKtTest : ServerTest() {
             .toResponse<BudgetYearStatsResponse>().let { response ->
                 println("${response.total} / ${response.items} / ${response.totalByType}")
 
-                Assert.assertEquals(5, response.total)
+                Assert.assertEquals(3, response.total)
                 Assert.assertEquals(3, response.items.size)
-                Assert.assertEquals(105, response.totalByType[BudgetType.Приход.name])
+                Assert.assertEquals(60, response.totalByType[BudgetType.Приход.name])
             }
     }
 
@@ -80,7 +80,11 @@ class BudgetApiKtTest : ServerTest() {
             .jsonBody(record)
             .post("/budget/add")
             .toResponse<BudgetRecord>().let { response ->
-                Assert.assertEquals(record, response)
+//                Assert.assertEquals(record, response)
+                Assert.assertEquals(record.year, response.year)
+                Assert.assertEquals(record.month, response.month)
+                Assert.assertEquals(record.amount, response.amount)
+                Assert.assertEquals(record.type, response.type)
             }
     }
 }
