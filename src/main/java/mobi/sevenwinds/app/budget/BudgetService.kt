@@ -27,12 +27,12 @@ object BudgetService {
             val query = BudgetTable
                 .join(AuthorTable, joinType = JoinType.LEFT, BudgetTable.authorId, AuthorTable.id)
                 .select {
-            if (param.authorName != null)
-                (BudgetTable.year eq param.year) and (AuthorTable.fullName.lowerCase()
-                        like "%${param.authorName.toLowerCase()}%")
-            else
-                BudgetTable.year eq param.year
-        }
+                    if (param.authorName != null)
+                        (BudgetTable.year eq param.year) and (AuthorTable.fullName.lowerCase()
+                                like "%${param.authorName.toLowerCase()}%")
+                    else
+                        BudgetTable.year eq param.year
+                }
                 .orderBy(BudgetTable.month to SortOrder.ASC, BudgetTable.amount to SortOrder.DESC)
                 .limit(param.limit, param.offset)
 

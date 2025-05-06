@@ -10,7 +10,7 @@ object AuthorTable : IntIdTable("author") {
     val creationDate = datetime("creation_date")
 }
 
-class AuthorEntity(id: EntityID<Int>): IntEntity(id) {
+class AuthorEntity(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<AuthorEntity>(AuthorTable)
 
     var fullName by AuthorTable.fullName

@@ -9,7 +9,7 @@ import com.papsign.ktor.openapigen.route.route
 
 fun NormalOpenAPIRoute.author() {
     route("/author") {
-        route("/add").post<Unit, AuthorRecord, AuthorRecord>(info("Добавить запись")) {param, body ->
+        route("/add").post<Unit, AuthorRecord, AuthorRecord>(info("Добавить запись")) { param, body ->
             respond(AuthorService.addRecord(body))
         }
     }
